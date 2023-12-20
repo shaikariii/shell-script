@@ -8,23 +8,23 @@ then
     exit 1
 fi
 
+VALIDATE() {
+
+    if [ $1 -ne 0 ]
+then
+    echo "Installation failed"
+    exit 1
+else    
+    echo "Installation success"
+fi
+}
 
 yum install mysql -y
 
-if [ $? -ne 0 ]
-then
-    echo "Installation of mysql is failed"
-    exit 1
-else    
-    echo "Installation of mysql is success"
-fi
+VALIDATE $? 
+
+
 
 yum install postfix -y
 
-if [ #? -ne 0 ]
-then
-    echo "Installation of Postfix is failed"
-    exit 1
-else
-    echo "Installation of postfix is success"
-fi
+VALIDATE $?
