@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+SCRIPT_NAME=$0
+DATE=$(date +%F-%H-%M-%S)
+LOG_FILE=/tmp/$SCRIPT_NAME-$DATE.log
+
 user_id=$(id -u)
 
 if [ $user_id -ne 0 ]
@@ -19,12 +24,10 @@ else
 fi
 }
 
-yum install mysql -y
+yum install mysql -y &>>$LOG_FILE
 
 VALIDATE $? Mysql
 
-
-
-yum install postfix -y
+yum install postfix -y &>>$LOG_FILE
 
 VALIDATE $? Postfix
